@@ -15,4 +15,4 @@ Proporcionar praticidade, transparência e rapidez na reserva de espaços escola
 ## 💼 Modelo de Negócios: B2B / B2G
 * **Modelo Escolhido:** B2B / B2G (Business to Business / Business to Government).
 * **Justificativa:** O software é fornecido como solução *SaaS* (Software como Serviço) para a gestão da escola ou rede de ensino (pública ou privada). Para os alunos e professores (usuários finais), o uso é 100% gratuito e integrado à rotina acadêmica.
-*
+
