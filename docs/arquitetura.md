@@ -1,4 +1,5 @@
 # 🏛️ RELATÓRIO DE ARQUITETURA E MODELAGEM - CTBJ CONECTA
+
 ---
 
 > **Projeto:** CTBJ Conecta (Web & App Mobile)  
@@ -8,6 +9,7 @@
 ---
 
 ## 📋 1. Visão Geral do Sistema
+
 O **CTBJ Conecta** é uma solução integradora desenvolvida para gerenciar a reserva, empréstimo e controle de utilização de **Espaços, Equipamentos e Ferramentas** dos cursos de Informática, Agropecuária e Enfermagem. O fluxo exige autorização do professor e preenchimento da **Ficha Digital de Uso**.
 
 ---
@@ -16,27 +18,26 @@ O **CTBJ Conecta** é uma solução integradora desenvolvida para gerenciar a re
 
 ```mermaid
 graph TD
-    A[Usuário abre o CTBJ Conecta Web/App] --> B{Possui Acesso / Perfil?}
-    B -->|Não Autorizado| C[Acesso Negado]
-    B -->|Aluno / Professor| D[Selecionar Categoria: Espaços, Informática, Agro ou Enfermagem]
-    D --> E[Verificar Status: Livre 🟢 / Reservado 🟡 / Indisponível 🔴]
-    E --> F[Solicitar Reserva / Empréstimo]
-    F --> G{Exige Autorização do Professor?}
-    G -->|Sim| H[Enviar Notificação para Validação do Professor]
-    H --> I{Professor Aprovou?}
-    I -->|Não| J[Reserva Recusada com Justificativa]
-    I -->|Sim| K[Preencher Ficha Digital de Uso e Alunos Envolvidos]
-    G -->|Não / Sou Professor| K
-    K --> L[Retirar Chave / Equipamento com o Responsável]
-    L --> M[Registrar Horário de Entrada e N° do PC/Ferramenta]
+    A[Inicio] --> B{Possui Acesso?}
+    B -->|Nao| C[Acesso Negado]
+    B -->|Sim| D[Selecionar Categoria]
+    D --> E[Verificar Status]
+    E --> F[Solicitar Reserva]
+    F --> G{Exige Autorizacao?}
+    G -->|Sim| H[Notificar Professor]
+    H --> I{Aprovou?}
+    I -->|Nao| J[Reserva Recusada]
+    I -->|Sim| K[Preencher Ficha Digital]
+    G -->|Nao| K
+    K --> L[Retirar Chave]
+    L --> M[Registrar Entrada]
     M --> N[Uso do Recurso]
-    N --> O[Registrar Horário de Saída e Devolução da Chave]
-    O --> P[Status Concluído no Sistema 🟢]
-
+    N --> O[Registrar Saida]
+    O --> P[Status Concluido]
 erDiagram
     USUARIO ||--o{ SOLICITACAO : realiza
-    USUARIO ||--o{ SOLICITACAO : autoriza_como_professor
-    RECURSO ||--o{ SOLICITACAO : eh_reservado
+    USUARIO ||--o{ SOLICITACAO : autoriza
+    RECURSO ||--o{ SOLICITACAO : reservado
     SOLICITACAO ||--|| FICHA_USO : gera
 
     USUARIO {
