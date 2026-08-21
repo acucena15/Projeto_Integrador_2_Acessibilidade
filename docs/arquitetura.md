@@ -43,16 +43,16 @@ erDiagram
         int id_usuario PK
         string nome
         string matricula
-        string curso "Informática / Agropecuária / Enfermagem / Servidor"
-        string perfil "Aluno / Professor / Coordenação / Chaveiro"
+        string curso
+        string perfil
     }
 
     RECURSO {
         int id_recurso PK
         string nome_recurso
-        string categoria "Espaços / Informática / Agro / Enfermagem"
-        string tipo "Laboratório / Computador / Ferramenta / Equipamento"
-        string status "Disponível / Reservado / Indisponível"
+        string categoria
+        string tipo
+        string status
     }
 
     SOLICITACAO {
@@ -63,7 +63,7 @@ erDiagram
         date data
         time hora_inicio
         time hora_fim
-        string status_aprovacao "Pendente / Aprovado / Recusado"
+        string status_aprovacao
     }
 
     FICHA_USO {
