@@ -6,9 +6,30 @@ Este projeto consiste em uma plataforma (aplicativo e site) para automação e g
 ## 💡 Proposta de Valor
 Proporcionar praticidade, transparência e rapidez na reserva de recursos escolares em tempo real. O sistema atende de forma personalizada os cursos de **Informática, Agropecuária e Enfermagem**, garantindo controle estrito de uso por meio de autorização prévia dos professores e preenchimento de uma Ficha Digital de uso e retirada de chaves/ferramentas.
 
-## 👤 Personas
-* **Persona 1 (Professor):** Prof. Carlos, precisa autorizar e reservar ferramentas do setor de Agropecuária ou o laboratório de informática para uma aula prática, acompanhando a Ficha Digital dos alunos.
-* **Persona 2 (Aluno):** Maria, aluna de Enfermagem ou Informática, precisa solicitar o empréstimo de equipamentos/espaços e registrar os integrantes do seu grupo para pegar a chave do laboratório.
+# 👤 Personas do Sistema
+
+### **Persona 1 (Professor): Prof. Carlos**
+* **Perfil:** Docente dos cursos técnicos do CTBJ.
+* **Necessidade:** Autorizar solicitações de alunos, realizar agendamentos diretos e instantâneos para suas aulas práticas (no campo da Agropecuária ou nos Laboratórios de TI) e acompanhar a Ficha Digital gerada para as suas turmas.
+
+---
+
+### **Persona 2 (Aluno): Maria**
+* **Perfil:** Estudante do CTBJ (Enfermagem / Informática / Agropecuária).
+* **Necessidade:** Solicitar o empréstimo de equipamentos, salas ou materiais técnicos, cadastrar os membros do seu grupo de trabalho e obter o QR Code/Comprovante Digital para retirar a chave do laboratório ou o kit de aulas.
+
+---
+
+### **Persona 3 (Funcionário / Técnico): Seu João**
+* **Perfil:** Responsável pelo almoxarifado, chaveiro e manutenção dos setores.
+* **Necessidade:** Acessar um painel simples para bipar/validar o QR Code do aluno, registrar a entrega/devolução de chaves e ferramentas, e alterar o status do recurso para 🔴 **Indisponível** quando precisar de manutenção.
+
+---
+
+### **Persona 4 (Diretor / Administrador): Diretora Ana**
+* **Perfil:** Gestão e Direção do Colégio Técnico.
+* **Necessidade:** Acessar o painel master antes do início do período letivo para cadastrar e validar as contas de Professores e Funcionários, garantindo a governança, a segurança e a hierarquia de acesso ao sistema.
+
 
 ## 💼 Modelo de Negócios: B2B / B2G
 * **Modelo Escolhido:** B2B / B2G (Business to Business / Business to Government).
