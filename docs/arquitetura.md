@@ -1,79 +1,70 @@
-# 🏛️ RELATÓRIO DE ARQUITETURA E MODELAGEM - CTBJ CONECTA
+# Relatório de Arquitetura e Modelagem - CTBJ Conecta
+
+Este documento detalha as regras de negócio, a estrutura de permissões (RBAC) e os diagramas de modelagem do sistema **CTBJ Conecta**.
 
 ---
 
-> **Projeto:** CTBJ Conecta (Web & App Mobile)  
-> **Autora:** Açucena Alves Soares  
-> **Instituição:** Colégio Técnico de Bom Jesus (CTBJ - UFPI)
+## 1. Matriz de Permissões (RBAC)
+
+| Papel | Reservar Equipamento | Reservar Espaço | Aprovar Reserva | Cadastrar Recursos |
+| :--- | :---: | :---: | :---: | :---: |
+| **Aluno** | ✅ | ❌ | ❌ | ❌ |
+| **Professor** | ✅ | ✅ | ❌ | ❌ |
+| **Coordenador** | ✅ | ✅ | ✅ | ❌ |
+| **Diretor / Administrador** | ✅ | ✅ | ✅ | ✅ |
 
 ---
 
-## 📋 1. Visão Geral do Sistema
+## 2. Regras de Negócio e Segurança
 
-O **CTBJ Conecta** é uma solução integradora desenvolvida para gerenciar a reserva, empréstimo e controle de utilização de **Espaços, Equipamentos e Ferramentas** dos cursos de Informática, Agropecuária e Enfermagem. O fluxo exige autorização do professor e preenchimento da **Ficha Digital de Uso**.
+* **Solicitação de Reservas:** Alunos só podem solicitar equipamentos. Professores e Coordenadores podem solicitar espaços físicos (salas/laboratórios).
+* **Aprovação Obrigatória:** Nenhuma reserva é confirmada automaticamente; todas passam por validação do Coordenador responsável.
+* **Política de Conflitos:** O sistema não permite agendamentos duplos para o mesmo recurso no mesmo horário.
+* **Restrição do Diretor:** Apenas o Diretor/Administrador possui acesso total para cadastrar e alterar a estrutura do sistema.
 
 ---
 
-## 🔀 2. Diagrama de Fluxo de Processo (Mermaid)
+## 3. Fluxograma do Processo de Reserva
 
 ```mermaid
 graph TD
-    A[Inicio] --> B{Possui Acesso?}
-    B -->|Nao| C[Acesso Negado]
-    B -->|Sim| D[Selecionar Categoria]
-    D --> E[Verificar Status]
-    E --> F[Solicitar Reserva]
-    F --> G{Exige Autorizacao?}
-    G -->|Sim| H[Notificar Professor]
-    H --> I{Aprovou?}
-    I -->|Nao| J[Reserva Recusada]
-    I -->|Sim| K[Preencher Ficha Digital]
-    G -->|Nao| K
-    K --> L[Retirar Chave]
-    L --> M[Registrar Entrada]
-    M --> N[Uso do Recurso]
-    N --> O[Registrar Saida]
-    O --> P[Status Concluido]
+    A[Início: Usuário solicita reserva] --> B{Possui permissão?}
+    B -- Não --> C[Exibir mensagem de erro]
+    B -- Sim --> D{Recurso disponível?}
+    D -- Não --> E[Notificar indisponibilidade]
+    D -- Sim --> F[Encaminhar para aprovação]
+    F --> G{Aprovado pelo Coordenador?}
+    G -- Não --> H[Reserva Recusada]
+    G -- Sim --> I[Reserva Confirmada]
 erDiagram
-    USUARIO ||--o{ SOLICITACAO : realiza
-    USUARIO ||--o{ SOLICITACAO : autoriza
-    RECURSO ||--o{ SOLICITACAO : reservado
-    SOLICITACAO ||--|| FICHA_USO : gera
-
+    USUARIO ||--o{ RESERVA : faz
+    RECURSO ||--o{ RESERVA : contem
+    
     USUARIO {
         int id_usuario PK
         string nome
-        string matricula
-        string curso
-        string perfil
+        string email
+        string papel
     }
-
+    
     RECURSO {
         int id_recurso PK
-        string nome_recurso
-        string categoria
+        string nome
         string tipo
         string status
     }
-
-    SOLICITACAO {
-        int id_solicitacao PK
-        int id_aluno FK
-        int id_professor_autorizador FK
+    
+    RESERVA {
+        int id_reserva PK
+        int id_usuario FK
         int id_recurso FK
-        date data
-        time hora_inicio
-        time hora_fim
-        string status_aprovacao
+        datetime data_inicio
+        datetime data_fim
+        string status
     }
+---
 
-    FICHA_USO {
-        int id_ficha PK
-        int id_solicitacao FK
-        string lista_alunos_presentes
-        string identificador_pc_ou_ferramenta
-        time hora_entrada_real
-        time hora_saida_real
-        boolean chave_retirada
-        boolean chave_devolvida
-    }
+## 5. Rastreabilidade e Gestão Ágil
+
+* **Quadro Kanban no Trello:** https://trello.com/b/SEU_LINK_DO_TRELLO
+* **Documentação Interativa no Notion:** https://absorbed-currency-75a.notion.site/PI2-CTBJ-Conecta-Reserva-de-Salas-e-Recursos-3c20b479d9ef8010af85feef5c614b82?source=copy_link
