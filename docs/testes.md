@@ -13,5 +13,5 @@
 
 ## 2. Validações Realizadas
 - [x] Ajuste da paleta de cores para os tons oficiais da logo (Azul, Verde e Roxo).
-- [x] Inclusão dos laboratórios reais (Informática, Agropecuária, Enfermagem, Mecânica, Auditório).
-- [x] Controle de acesso por perfil (Aluno solicita, Diretor/Coordenador aprova ou recusa).
+- [x] Inclusão dos laboratórios reais (Informática, Agropecuária, Enfermagem, Auditório).
+- [x] Controle de acesso por perfil (Aluno solicita, Diretor, Coordenador, Professor aprova ou recusa).
