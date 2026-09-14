@@ -21,4 +21,4 @@
 * **[RNF03] Desempenho e Carregamento:** A consulta ao catálogo de categorias e aos status dos recursos deve responder em menos de 2 segundos.
 * **[RNF04] Segurança e Rastreabilidade:** As senhas devem ser criptografadas no banco de dados e as Fichas Digitais devem registrar de forma inalterável o histórico de entradas, saídas e responsáveis pela infraestrutura.
 * **[RNF05] Disponibilidade Multiplataforma:** O sistema deve funcionar via navegador Web como aplicação independente para garantir o fluxo de reservas mesmo em momentos de instabilidade nos sistemas tradicionais.
-* 
+  
