@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CTBJ Conecta | Reserva de Espaços</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            blue: '#0284c7',
+            darkBlue: '#0369a1',
+            lightBg: '#f8fafc',
+            cardBg: '#ffffff'
+          }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+</style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+
+<!-- ================= TELA DE LOGIN ================= -->
+<div id="auth-screen" class="relative flex min-h-screen items-center justify-center overflow-hidden p-4">
+  <div aria-hidden="true" class="pointer-events-none absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-sky-200/50 blur-[120px]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-40 right-0 h-[30rem] w-[30rem] rounded-full bg-indigo-200/40 blur-[120px]"></div>
+
+  <div class="relative grid w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl lg:grid-cols-2">
+    <!-- Painel Esquerdo -->
+    <aside class="relative hidden flex-col justify-between bg-gradient-to-br from-sky-600 via-sky-700 to-indigo-800 p-10 text-white lg:flex">
+      <div class="flex items-center gap-3">
+        <a href="SEU_LINK_AQUI" target="_blank">
+          <img src="log.jpeg" alt="CTBJ Conecta Logo" class="h-12 w-auto object-contain rounded-xl bg-white p-1 shadow-md">
+        </a>
+        <span class="text-lg font-semibold tracking-tight text-white">CTBJ Conecta</span>
+      </div>
+      <div class="space-y-4">
+        <h1 class="text-balance text-3xl font-bold leading-tight text-white">Conecta. Reserva. Utiliza. Transforma.</h1>
+        <p class="text-pretty text-sm leading-relaxed text-sky-100">Laboratórios, agropecuária, enfermagem, auditório e multimídia em um só lugar. Solicite, acompanhe e gerencie reservas com transparência.</p>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-sky-100">
+        <svg class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Acesso institucional seguro
+      </div>
+    </aside>
+
+    <!-- Formulário -->
+    <div class="p-8 sm:p-10">
+      <div class="mb-8 flex items-center gap-3 lg:hidden">
+        <a href="SEU_LINK_AQUI" target="_blank">
+          <img src="log.jpeg" alt="CTBJ Conecta Logo" class="h-10 w-auto object-contain rounded-xl bg-white p-1 shadow-sm border border-slate-200">
+        </a>
+        <span class="text-lg font-semibold tracking-tight text-slate-900">CTBJ Conecta</span>
+      </div>
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">Bem-vindo de volta</h2>
+        <p class="mt-1 text-sm text-slate-500">Entre com suas credenciais institucionais.</p>
+      </div>
+      
+      <form class="space-y-5" onsubmit="handleLogin(event)">
+        <div class="space-y-2">
+          <label for="email" class="text-sm font-medium text-slate-700">E-mail institucional</label>
+          <div class="relative">
+            <svg class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <input id="email" type="email" required placeholder="nome@ufpi.edu.br" value="" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-slate-900 outline-none transition focus:border-sky-600 focus:bg-white focus:ring-2 focus:ring-sky-600/20"/>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label for="password" class="text-sm font-medium text-slate-700">Senha</label>
+          <div class="relative">
+            <svg class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <input id="password" type="password" required value="" placeholder="••••••••" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-2.5 pl-10 pr-10 text-sm text-slate-900 outline-none transition focus:border-sky-600 focus:bg-white focus:ring-2 focus:ring-sky-600/20"/>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-sm font-medium text-slate-700">Perfil de acesso</span>
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-4" id="role-selector">
+            <button type="button" onclick="selectRole('Aluno')" data-role="Aluno" class="role-btn rounded-xl border border-sky-600 bg-sky-50 px-3 py-2.5 text-sm font-semibold text-sky-700 transition">Aluno</button>
+            <button type="button" onclick="selectRole('Professor')" data-role="Professor" class="role-btn rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">Professor</button>
+            <button type="button" onclick="selectRole('Coordenador')" data-role="Coordenador" class="role-btn rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">Coordenador</button>
+            <button type="button" onclick="selectRole('Diretor')" data-role="Diretor" class="role-btn rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">Diretor</button>
+          </div>
+          <p id="role-desc" class="min-h-8 rounded-lg bg-slate-100 px-3 py-2 text-xs leading-relaxed text-slate-600">Acompanha o status das suas solicitações de reserva.</p>
+        </div>
+
+        <button type="submit" class="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-sky-600 font-semibold text-white transition hover:bg-sky-700 shadow-md shadow-sky-600/20 active:scale-[0.99]">
+          Entrar no Sistema
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DASHBOARD PRINCIPAL ================= -->
+<div id="app-shell" class="hidden min-h-screen grid-cols-1 lg:grid-cols-[260px_1fr]">
+  <!-- Sidebar -->
+  <aside class="flex flex-col justify-between border-r border-slate-200 bg-white p-6">
+    <div>
+      <div class="mb-8 flex items-center gap-3">
+        <a href="SEU_LINK_AQUI" target="_blank">
+          <img src="log.jpeg" alt="CTBJ Conecta Logo" class="h-10 w-auto object-contain rounded-xl bg-white p-1 shadow-md border border-slate-100">
+        </a>
+        <div>
+          <h2 class="font-bold text-slate-900 text-base leading-tight">CTBJ Conecta</h2>
+          <span class="text-[10px] uppercase font-bold text-sky-600 tracking-wider">Recursos & Reservas</span>
+        </div>
+      </div>
+
+      <nav class="space-y-1">
+        <span class="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Navegação</span>
+        <button id="nav-espacos" onclick="switchTab('espacos')" class="flex w-full items-center gap-3 rounded-xl bg-sky-50 border border-sky-200 px-3 py-2.5 text-sm font-semibold text-sky-700">
+          <span>📅</span> Espaços & Labs
+        </button>
+        <button id="nav-painel" onclick="switchTab('painel')" class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+          <span>⚙️</span> Painel de Gestão
+        </button>
+      </nav>
+    </div>
+
+    <button onclick="handleLogout()" class="flex w-full items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50 py-2.5 text-sm font-semibold text-rose-600 hover:bg-rose-100 transition">
+      Sair do Sistema
+    </button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex flex-col">
+    <!-- Topbar -->
+    <header class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/80 px-8 py-4 backdrop-blur-md">
+      <h2 class="text-sm font-bold text-slate-600">CTBJ - Colégio Técnico de Bom Jesus</h2>
+      <div class="flex items-center gap-3">
+        <div id="avatar-icon" class="flex h-9 w-9 items-center justify-center rounded-full bg-sky-600 font-bold text-white">U</div>
+        <div>
+          <div id="user-display-name" class="text-sm font-bold text-slate-900">Nome do Usuário</div>
+          <div id="user-display-role" class="text-xs text-slate-500">Perfil: Aluno</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content View -->
+    <div class="p-8 space-y-8">
+      <!-- Banner de Boas-Vindas -->
+      <div class="rounded-2xl border border-sky-100 bg-gradient-to-r from-sky-500 via-sky-600 to-indigo-600 p-6 shadow-lg text-white">
+        <h1 id="welcome-title" class="text-2xl font-bold">Bem-vindo(a)!</h1>
+        <p id="welcome-sub" class="mt-1 text-sm text-sky-100">Gerencie e agende recursos institucionais de forma simples.</p>
+      </div>
+
+      <!-- VIEW: ESPAÇOS E LABS -->
+      <div id="view-espacos" class="space-y-6">
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div onclick="filterCategory('todos', this)" class="cat-card active cursor-pointer rounded-2xl border border-sky-500 bg-sky-50 p-4 transition shadow-sm">
+            <span class="text-2xl">🏛️</span>
+            <h3 class="mt-2 text-sm font-bold text-slate-900">Todos</h3>
+            <p class="text-xs text-slate-500">Todos os Ambientes</p>
+          </div>
+          <div onclick="filterCategory('info', this)" class="cat-card cursor-pointer rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-300">
+            <span class="text-2xl">💻</span>
+            <h3 class="mt-2 text-sm font-bold text-slate-900">Informática</h3>
+            <p class="text-xs text-slate-500">Labs 01 e 02</p>
+          </div>
+          <div onclick="filterCategory('agro', this)" class="cat-card cursor-pointer rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-300">
+            <span class="text-2xl">🌱</span>
+            <h3 class="mt-2 text-sm font-bold text-slate-900">Agropecuária</h3>
+            <p class="text-xs text-slate-500">Campo Exp. e Labs</p>
+          </div>
+          <div onclick="filterCategory('enf', this)" class="cat-card cursor-pointer rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-300">
+            <span class="text-2xl">🩺</span>
+            <h3 class="mt-2 text-sm font-bold text-slate-900">Enfermagem</h3>
+            <p class="text-xs text-slate-500">Simulação e Saúde</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900">Ambientes Disponíveis</h3>
+        <div id="resource-container" class="space-y-3"></div>
+      </div>
+
+      <!-- VIEW: PAINEL DE GESTÃO -->
+      <div id="view-painel" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-bold text-slate-900" id="painel-title">Painel de Solicitações</h3>
+          <span id="supervision-badge" class="rounded-full bg-sky-100 px-3 py-1 text-xs font-bold text-sky-700 border border-sky-200"></span>
+        </div>
+
+        <div id="painel-content"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ================= MODAL DE RESERVA ================= -->
+<div id="modal-reserva" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+  <div class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+      <h3 id="modal-target-title" class="text-lg font-bold text-slate-900">Agendar Ambiente</h3>
+      <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg">✕</button>
+    </div>
+
+    <div>
+      <label for="reserva-data" class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+        <span>📅</span> 1. Escolha a Data
+      </label>
+      <input type="date" id="reserva-data" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 p-2.5 text-sm text-slate-900 outline-none focus:border-sky-600 focus:bg-white" />
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label for="reserva-hora-inicio" class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+          <span>⏰</span> 2. Hora Inicial
+        </label>
+        <input type="time" id="reserva-hora-inicio" value="08:00" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 p-2.5 text-sm text-slate-900 outline-none focus:border-sky-600 focus:bg-white" />
+      </div>
+      <div>
+        <label for="reserva-hora-fim" class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+          <span>⏰</span> 3. Hora Final
+        </label>
+        <input type="time" id="reserva-hora-fim" value="10:00" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 p-2.5 text-sm text-slate-900 outline-none focus:border-sky-600 focus:bg-white" />
+      </div>
+    </div>
+
+    <div>
+      <label for="reserva-motivo" class="text-xs font-bold text-slate-500 uppercase tracking-wider">4. Motivo da Reserva</label>
+      <textarea id="reserva-motivo" placeholder="Ex: Aula prática de Redes de Computadores" class="mt-1.5 h-20 w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-sm text-slate-900 outline-none focus:border-sky-600 focus:bg-white"></textarea>
+    </div>
+
+    <button onclick="confirmReserva()" class="w-full rounded-xl bg-sky-600 py-3 text-sm font-semibold text-white hover:bg-sky-700 transition shadow-md shadow-sky-600/20">Confirmar Solicitação</button>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-10 rounded-full border border-slate-200 bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-2xl opacity-0 transition-all duration-300 pointer-events-none">
+  Notificação
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+let currentUser = { name: '', role: 'Aluno', email: '' };
+let currentTargetSpace = '';
+
+const roleDescriptions = {
+  'Aluno': 'Acompanha o status das suas solicitações de reserva.',
+  'Professor': 'Solicita reservas e aprova solicitações de alunos.',
+  'Coordenador': 'Supervisiona a grade geral em calendário e aprova solicitações.',
+  'Diretor': 'Supervisão geral com visão em tabela/calendário e aprovação técnica.'
+};
+
+const resources = [
+  { id: 1, name: 'Laboratório de Informática 02 (LAB 02)', cat: 'info', meta: '30 Computadores • Disponível' },
+  { id: 2, name: 'Laboratório de Informática 01 (LAB 01)', cat: 'info', meta: '25 Computadores • Disponível' },
+  { id: 3, name: 'Auditório Principal CTBJ', cat: 'todos', meta: 'Capacidade: 120 Pessoas • Requer Aprovação' },
+  { id: 4, name: 'Campo Experimental de Agropecuária', cat: 'agro', meta: 'Área externa • Disponível' },
+  { id: 5, name: 'Laboratório de Enfermagem e Anatomia', cat: 'enf', meta: 'Simuladores de Saúde • Disponível' }
+];
+
+// Carregar solicitações salvas no navegador (ou iniciar array vazio)
+let globalRequests = JSON.parse(localStorage.getItem('ctbj_reservas')) || [];
+
+function saveRequests() {
+  localStorage.setItem('ctbj_reservas', JSON.stringify(globalRequests));
+}
+
+function selectRole(role) {
+  currentUser.role = role;
+  document.querySelectorAll('.role-btn').forEach(btn => {
+    if (btn.dataset.role === role) {
+      btn.className = "role-btn rounded-xl border border-sky-600 bg-sky-50 px-3 py-2.5 text-sm font-semibold text-sky-700 transition";
+    } else {
+      btn.className = "role-btn rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition";
+    }
+  });
+  document.getElementById('role-desc').innerText = roleDescriptions[role];
+}
+
+function parseEmailToName(email) {
+  const prefix = email.split('@')[0];
+  return prefix.split('.')
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const name = parseEmailToName(email);
+
+  currentUser.name = name;
+  currentUser.email = email;
+
+  document.getElementById('welcome-title').innerText = `Bem-vindo(a), ${name}!`;
+  document.getElementById('user-display-name').innerText = name;
+  document.getElementById('user-display-role').innerText = `Perfil: ${currentUser.role}`;
+  document.getElementById('avatar-icon').innerText = name.charAt(0);
+
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('app-shell').classList.remove('hidden');
+  document.getElementById('app-shell').classList.add('grid');
+
+  document.getElementById('reserva-data').value = new Date().toISOString().split('T')[0];
+
+  renderResources('todos');
+  renderPainel();
+  showToast(`Autenticado como ${currentUser.role}`);
+}
+
+function handleLogout() {
+  document.getElementById('email').value = '';
+  document.getElementById('password').value = '';
+  document.getElementById('app-shell').classList.add('hidden');
+  document.getElementById('app-shell').classList.remove('grid');
+  document.getElementById('auth-screen').classList.remove('hidden');
+}
+
+function renderResources(catFilter) {
+  const container = document.getElementById('resource-container');
+  container.innerHTML = '';
+
+  const filtered = catFilter === 'todos' ? resources : resources.filter(r => r.cat === catFilter || r.cat === 'todos');
+
+  filtered.forEach(res => {
+    const item = document.createElement('div');
+    item.className = 'flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-300';
+    item.innerHTML = `
+      <div>
+        <h4 class="font-bold text-slate-900 text-sm">${res.name}</h4>
+        <p class="text-xs text-slate-500 mt-1">${res.meta}</p>
+      </div>
+      <button onclick="openModal('${res.name}')" class="rounded-xl bg-sky-600 px-4 py-2 text-xs font-bold text-white hover:bg-sky-700 transition shadow-sm">Solicitar Reserva</button>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function filterCategory(cat, element) {
+  document.querySelectorAll('.cat-card').forEach(c => {
+    c.className = 'cat-card cursor-pointer rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-300';
+  });
+  element.className = 'cat-card active cursor-pointer rounded-2xl border border-sky-500 bg-sky-50 p-4 transition shadow-sm hover:border-sky-400';
+  renderResources(cat);
+}
+
+function switchTab(tab) {
+  const viewEspacos = document.getElementById('view-espacos');
+  const viewPainel = document.getElementById('view-painel');
+  const navEspacos = document.getElementById('nav-espacos');
+  const navPainel = document.getElementById('nav-painel');
+
+  if (tab === 'espacos') {
+    viewEspacos.classList.remove('hidden');
+    viewPainel.classList.add('hidden');
+    navEspacos.className = "flex w-full items-center gap-3 rounded-xl bg-sky-50 border border-sky-200 px-3 py-2.5 text-sm font-semibold text-sky-700";
+    navPainel.className = "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition";
+  } else {
+    viewEspacos.classList.add('hidden');
+    viewPainel.classList.remove('hidden');
+    navPainel.className = "flex w-full items-center gap-3 rounded-xl bg-sky-50 border border-sky-200 px-3 py-2.5 text-sm font-semibold text-sky-700";
+    navEspacos.className = "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition";
+    renderPainel();
+  }
+}
+
+function openModal(spaceName) {
+  currentTargetSpace = spaceName;
+  document.getElementById('modal-target-title').innerText = spaceName;
+  const modal = document.getElementById('modal-reserva');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeModal() {
+  const modal = document.getElementById('modal-reserva');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+
+function confirmReserva() {
+  const dia = document.getElementById('reserva-data').value;
+  const horaInicio = document.getElementById('reserva-hora-inicio').value;
+  const horaFim = document.getElementById('reserva-hora-fim').value;
+  const motivo = document.getElementById('reserva-motivo').value;
+
+  if (!dia || !horaInicio || !horaFim || !motivo) {
+    showToast('Por favor, preencha todos os campos.');
+    return;
+  }
+
+  const horaFormatada = `${horaInicio} - ${horaFim}`;
+
+  const conflict = globalRequests.find(r => 
+    r.space === currentTargetSpace && 
+    r.dia === dia && 
+    r.hora === horaFormatada &&
+    r.status !== 'Rejeitado'
+  );
+
+  if (conflict) {
+    showToast('⚠️ Horário indisponível! Este espaço já está reservado nessa data e horário.');
+    return;
+  }
+
+  globalRequests.unshift({
+    user: currentUser.name,
+    role: currentUser.role,
+    space: currentTargetSpace,
+    dia: dia,
+    hora: horaFormatada,
+    motivo: motivo,
+    status: 'Pendente'
+  });
+
+  saveRequests();
+  closeModal();
+  document.getElementById('reserva-motivo').value = '';
+  showToast('Solicitação de reserva realizada com sucesso!');
+  renderPainel();
+}
+
+function updateStatus(index, newStatus) {
+  globalRequests[index].status = newStatus;
+  saveRequests();
+  showToast(`Solicitação ${newStatus.toLowerCase()}!`);
+  renderPainel();
+}
+
+function renderPainel() {
+  const container = document.getElementById('painel-content');
+  const badge = document.getElementById('supervision-badge');
+  container.innerHTML = '';
+
+  badge.innerText = `Visão: ${currentUser.role}`;
+
+  if (globalRequests.length === 0) {
+    container.innerHTML = `<div class="rounded-2xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">Nenhuma solicitação cadastrada até o momento.</div>`;
+    return;
+  }
+
+  const tableWrapper = document.createElement('div');
+  tableWrapper.className = 'overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm';
+
+  let rows = globalRequests.map((req, idx) => {
+    let statusBg = 'bg-amber-100 text-amber-800 border-amber-200';
+    if (req.status.includes('Aprovado')) statusBg = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+    if (req.status.includes('Rejeitado')) statusBg = 'bg-rose-100 text-rose-800 border-rose-200';
+
+    const canApprove = (currentUser.role === 'Professor' || currentUser.role === 'Coordenador' || currentUser.role === 'Diretor') && req.status === 'Pendente';
+
+    return `
+      <tr class="border-b border-slate-100 text-sm hover:bg-slate-50">
+        <td class="p-4 font-semibold text-slate-900">${req.user} <span class="block text-xs font-normal text-slate-500">${req.role}</span></td>
+        <td class="p-4 text-slate-700">${req.space}</td>
+        <td class="p-4 text-slate-600">${req.dia}<br/><span class="text-xs font-semibold text-slate-500">${req.hora}</span></td>
+        <td class="p-4 text-slate-600">${req.motivo}</td>
+        <td class="p-4">
+          <span class="inline-block rounded-full px-2.5 py-1 text-xs font-bold border ${statusBg}">
+            ${req.status}
+          </span>
+        </td>
+        <td class="p-4 text-right">
+          ${canApprove ? `
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="updateStatus(${idx}, 'Aprovado por ${currentUser.role}')" class="rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition">Aprovar</button>
+              <button onclick="updateStatus(${idx}, 'Rejeitado')" class="rounded-lg bg-rose-600 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-rose-700 transition">Rejeitar</button>
+            </div>
+          ` : '<span class="text-xs text-slate-400">Nenhuma ação</span>'}
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  tableWrapper.innerHTML = `
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-200 bg-slate-50 text-xs font-bold text-slate-500 uppercase">
+          <th class="p-4">Solicitante</th>
+          <th class="p-4">Espaço</th>
+          <th class="p-4">Data & Hora</th>
+          <th class="p-4">Motivo</th>
+          <th class="p-4">Status</th>
+          <th class="p-4 text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
+  `;
+
+  container.appendChild(tableWrapper);
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.innerText = message;
+  toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+  
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+  }, 3500);
+}
+</script>
+</body>
+</html>
